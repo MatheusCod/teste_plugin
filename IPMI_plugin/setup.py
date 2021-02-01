@@ -30,7 +30,7 @@ setuptools.setup(
     },
     entry_points={
         "tensorboard_plugins": [
-            "IMPI_plugin = IPMI_plugin_tensorboard.plugin:IPMIplugin",
+            "IMPI_plugin = IPMI_plugin_tensorboard.plugin:IPMI_Plugin",
         ],
     },
 )
