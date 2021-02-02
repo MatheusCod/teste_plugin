@@ -3,7 +3,7 @@ from __future__ import division
 from __future__ import print_function
 
 # Standard imports
-from IPMI_plugin_tensorboard import metadata
+from .metadata import metadata
 from tensorboard.compat import tf2 as tf
 
 
