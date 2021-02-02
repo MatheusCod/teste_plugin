@@ -89,7 +89,7 @@ class IPMI_Plugin(base_plugin.TBPlugin):
         with open(resource_path, "rb") as read_file:
             mimetype = mimetypes.guess_type(resource_path)[0]
             return http_util.Respond(
-                request, read_file.read(), content_type=mimetype
+                request, read_file.read(), content_type="application/json"
             )
     def is_active(self):
         """Returns whether there is relevant data for the plugin to process.
@@ -101,7 +101,12 @@ class IPMI_Plugin(base_plugin.TBPlugin):
         )
 
     def frontend_metadata(self):
-        return base_plugin.FrontendMetadata(es_module_path="/static/index.js")
+        return base_plugin.FrontendMetadata(
+            es_module_path="/index.js"
+            disable_reload=False,
+            tab_name='IPMI_Plugin',
+            remove_dom=False,
+            element_name=None))
 
     def scalars_impl(self, tag, run):
         """Returns scalar data for the specified tag and run.
