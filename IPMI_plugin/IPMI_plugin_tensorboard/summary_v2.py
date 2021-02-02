@@ -3,11 +3,11 @@ from __future__ import division
 from __future__ import print_function
 
 # Standard imports
-from .metadata import metadata
+from .metadata import PLUGIN_NAME
 from tensorboard.compat import tf2 as tf
 
 
-def FairnessIndicators(eval_result_output_dir, step=None, description=None):
+def summary_v2(eval_result_output_dir, step=None, description=None):
   """Write a Fairness Indicators summary.
   Arguments:
     eval_result_output_dir: Directory output created by
@@ -25,7 +25,7 @@ def FairnessIndicators(eval_result_output_dir, step=None, description=None):
     ValueError: if a default writer exists, but no step was provided and
       `tf.summary.experimental.get_step()` is None.
   """
-  with tf.summary.experimental.summary_scope(metadata.PLUGIN_NAME):
+  with tf.summary.experimental.summary_scope(PLUGIN_NAME):
     return tf.summary.write(
         tag=metadata.PLUGIN_NAME,
         tensor=tf.constant(eval_result_output_dir),
