@@ -103,10 +103,9 @@ class IPMI_Plugin(base_plugin.TBPlugin):
     def frontend_metadata(self):
         return base_plugin.FrontendMetadata(
             es_module_path="/index.js"
-            disable_reload=False,
             tab_name='IPMI_Plugin',
             remove_dom=False,
-            element_name=None))
+            element_name=None)
 
     def scalars_impl(self, tag, run):
         """Returns scalar data for the specified tag and run.
