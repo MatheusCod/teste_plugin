@@ -102,7 +102,7 @@ class IPMI_Plugin(base_plugin.TBPlugin):
 
     def frontend_metadata(self):
         return base_plugin.FrontendMetadata(
-            es_module_path="/index.js"
+            es_module_path="/index.js",
             tab_name='IPMI_Plugin',
             remove_dom=False,
             element_name=None)
