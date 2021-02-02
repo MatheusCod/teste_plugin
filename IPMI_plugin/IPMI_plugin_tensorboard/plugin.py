@@ -89,7 +89,7 @@ class IPMI_Plugin(base_plugin.TBPlugin):
         with open(resource_path, "rb") as read_file:
             mimetype = mimetypes.guess_type(resource_path)[0]
             return http_util.Respond(
-                request, read_file.read(), content_type="application/json"
+                request, read_file.read(), content_type=mimetype
             )
     def is_active(self):
         """Returns whether there is relevant data for the plugin to process.
