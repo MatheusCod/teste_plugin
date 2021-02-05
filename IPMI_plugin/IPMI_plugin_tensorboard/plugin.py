@@ -54,7 +54,7 @@ class IPMI_Plugin(base_plugin.TBPlugin):
             "/printdata": self._serve_printdata,
             "/plotgraph": self._serve_plotgraph,
             "/tags": self._serve_tags,
-            "/greetings": self._serve_greetings
+            "/summary": self._serve_summary
         }
 
     def frontend_metadata(self):
@@ -114,7 +114,7 @@ class IPMI_Plugin(base_plugin.TBPlugin):
         return werkzeug.Response(contents, content_type="application/json")
 
     @wrappers.Request.application
-    def _serve_greetings(self, request):
+    def _serve_summary(self, request):
         """Serves greeting data for the specified tag and run.
 
         For details on how to use tags and runs, see
