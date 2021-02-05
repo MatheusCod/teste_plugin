@@ -21,7 +21,7 @@ from tensorboard.compat.proto import summary_pb2
 from IPMI_plugin_tensorboard import metadata
 
 
-def summary(name,value, step=None, description=None):
+def summary_v2(name,value, step=None, description=None):
     """Write a "greeting" summary.
     Arguments:
       name: A name for this summary. The summary tag used for TensorBoard will
@@ -41,7 +41,7 @@ def summary(name,value, step=None, description=None):
     """
     with tf.summary.experimental.summary_scope(
         name,
-        "IPMI_Plugin",
+        "IPMI_Plugin_summary_v2",
         values=[value, step],
     ) as (tag, _):
         return tf.summary.write(
