@@ -46,7 +46,7 @@ def summary_v2(name,value, step=None, description=None):
     ) as (tag, _):
         return tf.summary.write(
             tag=tag,
-            tensor=tf.strings.join(["data:", value]),
+            tensor=value,
             step=step,
             metadata=_create_summary_metadata(description),
         )
