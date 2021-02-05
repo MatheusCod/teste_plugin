@@ -31,7 +31,7 @@ export async function render() {
       )
     )
   );
-
+  console.log('greetings: ', greetings)
   const style = createElement(
     'style',
     `
