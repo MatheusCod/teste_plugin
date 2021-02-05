@@ -21,12 +21,12 @@ export async function render() {
   const data = await Promise.all(
     Object.entries(runToTags).flatMap(([run, tagToDescription]) =>
       Object.keys(tagToDescription).map((tag) =>
-        fetch('./summarys' + new URLSearchParams({run, tag}))
+        fetch('./greetings?' + new URLSearchParams({run, tag}))
           .then((response) => response.json())
-          .then((summary) => ({
+          .then((greetings) => ({
             run,
             tag,
-            summarys,
+            greetings,
           }))
       )
     )
@@ -60,17 +60,17 @@ export async function render() {
       createElement('tr', [
         createElement('th', 'Run'),
         createElement('th', 'Tag'),
-        createElement('th', 'summary_v2'),
+        createElement('th', 'Greetings'),
       ])
     ),
     createElement(
       'tbody',
-      data.flatMap(({run, tag, summarys}) =>
+      data.flatMap(({run, tag, greetings}) =>
         greetings.map((guest, i) =>
           createElement('tr', [
             createElement('td', i === 0 ? run : null),
             createElement('td', i === 0 ? tag : null),
-            createElement('td', name),
+            createElement('td', guest),
           ])
         )
       )
@@ -94,35 +94,6 @@ function createElement(tag, children) {
     }
   }
   return result;
-}
-  );
-  style.innerText = style.textContent;
-  document.head.appendChild(style);
-  const table = createElement('table', [
-    createElement(
-      'thead',
-      createElement('tr', [
-        createElement('th', 'Run'),
-        createElement('th', 'Tag'),
-        createElement('th', 'summarys'),
-      ])
-    ),
-    createElement(
-      'tbody',
-      data.flatMap(({run, tag, summarys}) =>
-        greetings.map((guest, i) =>
-          createElement('tr', [
-            createElement('td', i === 0 ? run : null),
-            createElement('td', i === 0 ? tag : null),
-            createElement('td', guest),
-          ])
-        )
-      )
-    ),
-  ]);
-  msg.textContent = 'Data loaded.';
-  document.body.appendChild(table);
-  
 }
 
 
