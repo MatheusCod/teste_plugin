@@ -87,7 +87,7 @@ class IPMI_Plugin(base_plugin.TBPlugin):
 
     @wrappers.Request.application
     def _serve_summarys(self, request):
-
+        """
         For details on how to use tags and runs, see
         https://github.com/tensorflow/tensorboard#tags-giving-names-to-data
         """
