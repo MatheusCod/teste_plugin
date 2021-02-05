@@ -51,8 +51,6 @@ class IPMI_Plugin(base_plugin.TBPlugin):
     def get_plugin_apps(self):
         return {
             "/index.js": self._serve_js,
-            "/printdata": self._serve_printdata,
-            "/plotgraph": self._serve_plotgraph,
             "/tags": self._serve_tags,
             "/summary": self._serve_summary
         }
@@ -70,24 +68,7 @@ class IPMI_Plugin(base_plugin.TBPlugin):
             contents, content_type="application/javascript"
         )
     
-    @wrappers.Request.application
-    def _serve_printdata(self, request):
-        del request
-        new_dict = {'Second': 'Print'}
-        contents = json.dumps(new_dict)
-        return werkzeug.Response(contents, content_type="application/json")
-    
-    @wrappers.Request.application
-    def _serve_plotgraph(self, request):
-        del request
-        size = random.randint(10, 15)
-        new_dict = {
-            "x": [i for i in range(size)],
-            "y": [random.randint(0, 20) for i in range(size)]
-        }
-        contents = json.dumps(new_dict)
-        return werkzeug.Response(contents, content_type="application/json")
-
+ 
    @wrappers.Request.application
     def _serve_tags(self, request):
         del request  # unused
