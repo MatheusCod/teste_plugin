@@ -33,7 +33,7 @@ seed(300)
 def main(unused_argv):
     writer = tf.summary.create_file_writer("demo_logs")
     with writer.as_default():
-        for i in range(300):
+        for i in range(100):
             summary_v2.summary("IMPI_Plugin", random(),step=i)
 
 
