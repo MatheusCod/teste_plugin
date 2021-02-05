@@ -21,12 +21,12 @@ export async function render() {
   const data = await Promise.all(
     Object.entries(runToTags).flatMap(([run, tagToDescription]) =>
       Object.keys(tagToDescription).map((tag) =>
-        fetch('./summary' + new URLSearchParams({run, tag}))
+        fetch('./summarys' + new URLSearchParams({run, tag}))
           .then((response) => response.json())
           .then((summary) => ({
             run,
             tag,
-            summary_v2,
+            summarys,
           }))
       )
     )
@@ -65,7 +65,7 @@ export async function render() {
     ),
     createElement(
       'tbody',
-      data.flatMap(({run, tag, summary_v2}) =>
+      data.flatMap(({run, tag, summarys}) =>
         greetings.map((guest, i) =>
           createElement('tr', [
             createElement('td', i === 0 ? run : null),
@@ -104,12 +104,12 @@ function createElement(tag, children) {
       createElement('tr', [
         createElement('th', 'Run'),
         createElement('th', 'Tag'),
-        createElement('th', 'Greetings'),
+        createElement('th', 'summarys'),
       ])
     ),
     createElement(
       'tbody',
-      data.flatMap(({run, tag, summary_v2}) =>
+      data.flatMap(({run, tag, summarys}) =>
         greetings.map((guest, i) =>
           createElement('tr', [
             createElement('td', i === 0 ? run : null),
