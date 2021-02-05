@@ -52,7 +52,7 @@ class IPMI_Plugin(base_plugin.TBPlugin):
         return {
             "/index.js": self._serve_js,
             "/tags": self._serve_tags,
-            "/summarys": self._serve_summarys,
+            "/greetings": self._serve_greetings,
         }
 
     def frontend_metadata(self):
@@ -86,7 +86,7 @@ class IPMI_Plugin(base_plugin.TBPlugin):
         return werkzeug.Response(contents, content_type="application/json")
 
     @wrappers.Request.application
-    def _serve_summarys(self, request):
+    def _serve_greetings(self, request):
         """
         For details on how to use tags and runs, see
         https://github.com/tensorflow/tensorboard#tags-giving-names-to-data
