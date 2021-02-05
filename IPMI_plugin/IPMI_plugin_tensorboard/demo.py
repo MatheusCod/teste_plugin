@@ -18,7 +18,6 @@ After installing the plugin (`python setup.py develop`), you can run TensorBoard
 with logdir set to the `demo_logs` directory.
 """
 
-
 import math
 
 from absl import app
@@ -35,7 +34,7 @@ def main(unused_argv):
     writer = tf.summary.create_file_writer("demo_logs")
     with writer.as_default():
         for i in range(300):
-            summary_v2.summary_v2("IMPI_Plugin", random(),step=i)
+            summary_v2.summary("IMPI_Plugin", random(),step=i)
 
 
 if __name__ == "__main__":
