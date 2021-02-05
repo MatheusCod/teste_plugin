@@ -21,7 +21,7 @@ export async function render() {
   const data = await Promise.all(
     Object.entries(runToTags).flatMap(([run, tagToDescription]) =>
       Object.keys(tagToDescription).map((tag) =>
-        fetch('./summary' + new URLSearchParams({run, tag}))
+        fetch('./summary?' + new URLSearchParams({run, tag}))
           .then((response) => response.json())
           .then((summary) => ({
             run,
