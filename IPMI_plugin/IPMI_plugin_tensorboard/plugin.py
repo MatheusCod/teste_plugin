@@ -99,7 +99,6 @@ class IPMI_Plugin(base_plugin.TBPlugin):
             data = [
                 tensor_util.make_ndarray(event.tensor_proto)
                 .item()
-                .decode("utf-8")
                 for event in self._multiplexer.Tensors(run, tag)
             ]
         except KeyError:
