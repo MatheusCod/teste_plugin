@@ -119,12 +119,12 @@ export async function render() {
   //}
   //newImg.src = "https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500";
   
-  /*
+  
   const runToTags = await fetch('./tags').then((response) => response.json());
   const data = await Promise.all(
     Object.entries(runToTags).flatMap(([run, tagToDescription]) =>
       Object.keys(tagToDescription).map((tag) =>
-        fetch('./greetings?' + new URLSearchParams({run, tag}))
+        fetch('./summary' + new URLSearchParams({run, tag}))
           .then((response) => response.json())
           .then((greetings) => ({
             run,
@@ -179,7 +179,7 @@ export async function render() {
   ]);
   msg.textContent = 'Data loaded.';
   document.body.appendChild(table);
-  */
+  
 }
 
 
