@@ -25,7 +25,7 @@ from tensorboard.util import tensor_util
 import werkzeug
 from werkzeug import wrappers
 
-from tensorboard_plugin_example import metadata
+from IPMI_plugin_tensorboard import metadata
 
 class ExamplePlugin(base_plugin.TBPlugin):
     plugin_name = metadata.PLUGIN_NAME
