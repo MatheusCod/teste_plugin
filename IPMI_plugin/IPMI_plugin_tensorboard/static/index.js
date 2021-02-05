@@ -31,55 +31,60 @@ export async function render() {
       )
     )
   );
-  console.log('greetings: ', greetings)
-  const style = createElement(
-    'style',
-    `
-      thead {
-        border-bottom: 1px black solid;
-        border-top: 2px black solid;
-      }
-      tbody {
-        border-bottom: 2px black solid;
-      }
-      table {
-        border-collapse: collapse;
-      }
-      td,
-      th {
-        padding: 2pt 8pt;
-      }
-    `
-  );
-  style.innerText = style.textContent;
-  document.head.appendChild(style);
+  console.log(data)
+  console.log(data[0].greetings)
 
-  const table = createElement('table', [
-    createElement(
-      'thead',
-      createElement('tr', [
-        createElement('th', 'Run'),
-        createElement('th', 'Tag'),
-        createElement('th', 'Greetings'),
-      ])
-    ),
-    createElement(
-      'tbody',
-      data.flatMap(({run, tag, greetings}) =>
-        greetings.map((guest, i) =>
-          createElement('tr', [
-            createElement('td', i === 0 ? run : null),
-            createElement('td', i === 0 ? tag : null),
-            createElement('td', guest),
-          ])
-        )
-      )
-    ),
-  ]);
-  msg.textContent = 'Data loaded.';
-  document.body.appendChild(table);
+
+  const newChart = document.createElement("canvas");
+  newChart.id = "myChart";
+  newChart.width = "600";
+  newChart.height = "400";
+  newChart.style.margin = "auto";
+  document.body.appendChild(newChart)
+
+  var script = document.createElement('script');
+  script.onload = function () {
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myLineChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+          labels: [1,2,3,4,5,6,7,8,9,10],
+          datasets: [{
+              label: 'Energy Consumption Through Time',
+              data: data[0].greetings,
+              borderColor: 'rgba(132, 132, 255, 1)',
+              borderWidth: 1
+          }]
+      },
+      options: {
+                responsive: false,
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        },
+                     scaleLabel: {
+                        display: true,
+                        labelString: 'Time (s)'
+                        }
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        },
+                     scaleLabel: {
+                        display: true,
+                        labelString: 'Energy Consumption (W)'
+                        }
+                    }]
+                }
+            }
+      });
+  };
+  
+  script.src = "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js";
+  document.head.appendChild(script);
 }
-
 function createElement(tag, children) {
   const result = document.createElement(tag);
   if (children != null) {
@@ -95,5 +100,3 @@ function createElement(tag, children) {
   }
   return result;
 }
-
-
