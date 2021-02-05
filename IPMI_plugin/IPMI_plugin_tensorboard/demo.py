@@ -34,7 +34,7 @@ def main(unused_argv):
     writer = tf.summary.create_file_writer("demo_logs")
     with writer.as_default():
         for i in range(100):
-            summary_v2.summary("IMPI_Plugin","julio",step=i)
+            summary_v2.summary_v2("IMPI_Plugin", "julio", step=i)
 
 
 if __name__ == "__main__":
