@@ -27,7 +27,7 @@ from werkzeug import wrappers
 
 from IPMI_plugin_tensorboard import metadata
 
-class ExamplePlugin(base_plugin.TBPlugin):
+class IPMI_Plugin(base_plugin.TBPlugin):
     plugin_name = metadata.PLUGIN_NAME
 
     def __init__(self, context):
