@@ -69,7 +69,7 @@ class IPMI_Plugin(base_plugin.TBPlugin):
         )
     
  
-   @wrappers.Request.application
+    @wrappers.Request.application
     def _serve_tags(self, request):
         del request  # unused
         mapping = self._multiplexer.PluginRunToTagToContent(
