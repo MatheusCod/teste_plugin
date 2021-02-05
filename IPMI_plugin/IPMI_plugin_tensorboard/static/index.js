@@ -21,12 +21,12 @@ export async function render() {
   const data = await Promise.all(
     Object.entries(runToTags).flatMap(([run, tagToDescription]) =>
       Object.keys(tagToDescription).map((tag) =>
-        fetch('./greetings?' + new URLSearchParams({run, tag}))
+        fetch('./summary' + new URLSearchParams({run, tag}))
           .then((response) => response.json())
-          .then((greetings) => ({
+          .then((summary) => ({
             run,
             tag,
-            greetings,
+            summary,
           }))
       )
     )
@@ -60,17 +60,17 @@ export async function render() {
       createElement('tr', [
         createElement('th', 'Run'),
         createElement('th', 'Tag'),
-        createElement('th', 'Greetings'),
+        createElement('th', 'data'),
       ])
     ),
     createElement(
       'tbody',
-      data.flatMap(({run, tag, greetings}) =>
+      data.flatMap(({run, tag, summary}) =>
         greetings.map((guest, i) =>
           createElement('tr', [
             createElement('td', i === 0 ? run : null),
             createElement('td', i === 0 ? tag : null),
-            createElement('td', guest),
+            createElement('td', name),
           ])
         )
       )
