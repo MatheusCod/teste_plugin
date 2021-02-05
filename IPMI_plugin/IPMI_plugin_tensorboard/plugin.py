@@ -88,7 +88,7 @@ class IPMI_Plugin(base_plugin.TBPlugin):
         contents = json.dumps(new_dict)
         return werkzeug.Response(contents, content_type="application/json")
 
-    @wrappers.Request.application
+   @wrappers.Request.application
     def _serve_tags(self, request):
         del request  # unused
         mapping = self._multiplexer.PluginRunToTagToContent(
@@ -102,15 +102,6 @@ class IPMI_Plugin(base_plugin.TBPlugin):
                     "description": summary_metadata.summary_description,
                 }
         contents = json.dumps(result, sort_keys=True)
-        with open('out.txt', 'w') as f:
-            print("mapping:", file=f)
-            print(mapping, file=f)
-            print()
-            print("result:", file=f)
-            print(result, file=f)
-            print()
-            print("contents:", file=f)
-            print(contents, file=f)
         return werkzeug.Response(contents, content_type="application/json")
 
     @wrappers.Request.application
